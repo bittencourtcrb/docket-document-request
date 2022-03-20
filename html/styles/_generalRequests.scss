@@ -1,0 +1,28 @@
+@import './components/sendRequest';
+@import './components/requestList';
+
+.container {
+    .requests{
+        margin-top: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 760px) {
+    .container {
+        .requests {
+            flex-direction: column;
+            .send-request {
+                width: 100%;
+            }
+
+            .request-list {
+                margin: 16px 0 0 0;
+                width: 100%;
+            }
+        }
+    }
+}

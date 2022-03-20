@@ -1,0 +1,39 @@
+.msg {
+    display: none;
+    justify-content: center;
+    .mensagem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 30px;
+        opacity: 1;
+        transition: all 0.52s;
+        background: #00b98e;
+        border: #777 solid 1px;
+        border-radius: 6px;
+        box-shadow: 1px 1px 5px rgba(0,0,0,.52);
+        position: fixed;
+        max-width: 418px;
+        width: 80%;
+        padding: 13px 16px;
+        p {
+            color: #fff;
+            margin-left: 12px;
+            margin-right: 60px;
+        }
+        img {
+            height: 15px;
+            color: #fff;
+        }
+        button {
+            margin: 0;
+            border: 0;
+            background: transparent;
+            height: 15px;
+            cursor: pointer;
+            img {
+                height: 15px;
+            }
+        }
+    }
+}

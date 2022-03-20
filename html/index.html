@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document Request</title>
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body>
+        <header>
+            <img src="assets/logo.svg" alt="Docket">
+        </header>
+        <div class="container">
+            <h1 class="request-title">Pedido #1</h1>
+            <div class="card-lead">
+                <div class="card-lead-header">
+                    <h3>Lead: Documento para criar contrato</h3>
+                    <div class="progress"><div id="circle" class="circle"></div><div id="progress-text">Em andamento</div></div>
+                </div>
+                <div class="card-lead-body">
+                    <p><strong>Observações:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sollicitudin commodo faucibus. Nullam ut pharetra turpis. Vestibulum molestie turpis ac tortor dapibus porttitor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam in elit vitae ligula consectetur hendrerit id id odio. Vestibulum volutpat gravida arcu sit amet tempus. In rhoncus leo vel dolor convallis gravida id a nulla.</p>
+                </div>
+                <div class="card-lead-info" id="card-lead-info">
+                    <p><strong>Criado por: </strong> <p id="info-name"></p></p>
+                    <p class="create-dt"><strong>Data de criação: </strong> <p id="info-date"></p></p>
+                </div>
+            </div>
+
+            <div class="requests">
+                <div class="send-request">
+                    <div class="send-request-head">
+                        <h3>Adicionar documentos ao pedido</h3>
+                    </div>
+                    <hr>
+                    <div class="send-request-body">
+                        <div class="field">
+                            <label class="label doc-name">Nome do documento: </label>
+                            <div class="control">
+                                <input type="text" id="doc-name" class="input" placeholder="Digite aqui">
+                            </div>
+                            <span class='msg-erro msg-nome'>Campo obrigatório</span>
+                        </div>
+                        <div class="field field-person">
+                            <label class="label person-type">Tipo de pessoa: </label>
+                            <div class="control">
+                                <select name="type-person" id="type-person" class="select" onChange="personSelect()">
+                                    <option value="1">Pessoa Física</option>
+                                    <option value="2">Pessoa Jurídica</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="field-cpf">
+                            <div class="field">
+                                <label class="label cpf">CPF: </label>
+                                <div class="control">
+                                    <input id="cpf" class="input" placeholder="Digite aqui" oninput="cpfMask()" >
+                                </div>
+                                <span class='msg-erro msg-cpf'>Campo obrigatório</span>
+                            </div>
+                            <div class="field">
+                                <label class="label full-name">Nome completo: </label>
+                                <div class="control">
+                                    <input type="text" id="full-name" class="input" placeholder="Digite aqui">
+                                </div>
+                                <span class='msg-erro msg-fullName'>Campo obrigatório</span>
+                            </div>
+                        </div>
+                        <div id="field-cnpj">
+                            <div class="field">
+                                <label class="label cnpj">CNPJ: </label>
+                                <div class="control">
+                                    <input id="cnpj" class="input" placeholder="Digite aqui" oninput="cnpjMask()">
+                                </div>
+                                <span class='msg-erro msg-cnpj'>Campo obrigatório</span>
+                            </div>
+                            <div class="field">
+                                <label class="label corporate-name">Razão social: </label>
+                                <div class="control">
+                                    <input type="text" id="corporate" class="input" placeholder="Digite aqui">
+                                </div>
+                                <span class='msg-erro msg-corporate'>Campo obrigatório</span>
+                            </div>
+                         </div>
+                        <h4>Dados do cartório</h4>
+                        <div class="field">
+                            <label class="label cep">CEP: </label>
+                            <div class="control">
+                                <input id="cep" class="input" placeholder="Digite aqui" oninput="cepMask()">
+                            </div>
+                            <span class='msg-erro msg-cep'>Campo obrigatório</span>
+                        </div>
+                        <div class="field address">
+                            <div class="div-street">
+                                <label class="label street">Rua: </label>
+                                <div class="control">
+                                    <input type="text" id="street" class="input input-street" placeholder="Digite aqui">
+                                </div>
+                                <span class='msg-erro msg-street'>Campo obrigatório</span>
+                            </div>
+                            <div class="div-number">
+                                <label class="label number">Número: </label>
+                                <div class="control">
+                                    <input type="number" id="number" class="input input-number" placeholder="Digite aqui">
+                                </div>
+                                <span class='msg-erro msg-number'>Campo obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="field field-city">
+                            <div class="div-city">
+                                <label class="label city">Cidade: </label>
+                                <div class="control">
+                                    <input type="text" id="city" class="input input-city" placeholder="Digite aqui">
+                                </div>
+                                <span class='msg-erro msg-city'>Campo obrigatório</span>
+                            </div>
+                            <div class="div-uf">
+                                <label class="label uf">UF: </label>
+                                <div class="control">
+                                    <input type="text" maxlength="2" id="uf" class="input input-uf" placeholder="Digite aqui">
+                                </div>
+                                <span class='msg-erro msg-uf'>Campo obrigatório</span>
+                            </div>
+                        </div>
+                        <button class="btn-send" onClick="sendRequest()">Criar documento</button>
+                    </div>
+                </div>
+                <div class="request-list">
+                    <div class="empty-file" id="empty-file">
+                        <img src="assets/empty.svg" alt="Docket">
+                        <p>Nenhum documento criado</p>
+                    </div>
+                    <div class="doc-list">
+                        <h3 id="num-docs" class="num-docs"></h3>
+                        <div class="card-request" id="card-request">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="modal-delete" class="modal">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3>Confirmar exclusão</h3>
+                    <p>Tem certeza que deseja excluir este documento?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-cancel" onclick="closeModal()">Cancelar</button>
+                    <button class="btn btn-delete" onclick="deleteRequest('modal-delete')">Excluir</button>
+                </div>
+            </div>
+        </div>
+        <div class="msg" id="msg">
+            <div id="mensagem" class="mensagem">
+                <img src="./assets/check-circle.svg" alt="">
+                <p id="p-message"></p>
+                <button class="closeButton" onClick="closeMessage()"><img src="./assets/close.svg" alt=""></button>
+            </div>
+        </div>
+        <footer>
+            <p>DOCKET © 2022</p>
+        </footer>
+        <script src="js/components/message.js"></script>
+        <script src="js/api/api.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/helpers/masks.js"></script>
+        <script src="js/components/modal.js"></script>
+        <script src="js/components/form.js"></script>
+        <script src="js/components/cardLead.js"></script>
+        <script src="js/components/cardRequest.js"></script>
+    </body>
+</html>
